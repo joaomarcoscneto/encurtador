@@ -1,0 +1,83 @@
+# Arquivos de configuração
+.env
+
+# Arquivos gerados pelo Composer
+/vendor
+composer.lock
+
+# Arquivos gerados pelo NPM ou Yarn
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# Arquivos gerados pelo Artisan
+/storage/*.key
+/storage/*.zip
+/storage/app/*.key
+/storage/app/*.zip
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+/mysql-data/*
+# Arquivos gerados por ferramentas de teste
+/phpunit.xml
+/tests/
+
+# Arquivos de configuração do IDE
+.idea/
+
+# Cache de Blade
+.phpstorm.meta.php
+
+# Arquivos de configuração do Homestead
+Homestead.yaml
+Homestead.json
+
+# Arquivos gerados pelo Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Arquivos de build
+/dist/
+/build/
+
+# Cache do Vue CLI
+.vuepress/.cache
+.vuepress/dist
+
+# Arquivos gerados pelo IDE
+.idea/
+
+# Arquivos de configuração do Webpack
+webpack.config.js
+
+# Cache do ESLint
+.eslintcache
+
+# Arquivos de configuração do Vetur (plugin do Vue para VS Code)
+.vscode/settings.json
+
+# Arquivos gerados pelo Vue CLI
+.vuepress/dist
+
+# Cache do Jest
+/.jest
+
+# Arquivos de configuração do Babel
+.babelrc
+.babelrc.js
+babel.config.js
+
+# Cache do Yarn
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.yarn/releases/yarn-release.js
+
+# Logs do Yarn
+.yarn/*-error.log
+.yarn/*-out.log

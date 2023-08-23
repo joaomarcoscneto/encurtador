@@ -1,0 +1,45 @@
+version: "3.8"
+
+services:
+
+  web:
+    depends_on: 
+      - api
+    build: ./encurtador-web  
+    volumes:
+      - ./encurtador-web:/app
+      - /app/node_modules
+      - ./.vite:/app/.vite
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_LIVERELOAD=true
+      - VITE_LIVERELOAD_PORT=35729
+
+  api:
+    build:
+      context: ./encurtador-api
+      dockerfile: Dockerfile
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=encurtador
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    volumes:
+      - ./encurtador-api:/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: encurtador
+      MYSQL_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mysql-data:/var/lib/mysql
