@@ -32,6 +32,15 @@ services:
       - 8000:8000
     depends_on:
       - db
+      - cron
+
+  cron:
+    build:
+      context: ./encurtador-api
+      dockerfile: cron.dockerfile
+    container_name: cron
+    volumes:
+      - ./encurtador-api:/app
 
   db:
     image: mysql:8.0
