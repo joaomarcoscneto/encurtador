@@ -24,12 +24,12 @@ RUN apt-get update && apt-get install -y \
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Copy composer files to the container
-COPY composer.json composer.lock ./
+COPY composer.json ./
 
 # Install project dependencies
 RUN composer install --prefer-dist --no-scripts --no-autoloader --no-dev
 
-# Copy the project files to the container
+# Copy the rest of the project files to the container
 COPY . .
 
 # Generate the autoload files
