@@ -3,8 +3,6 @@ version: "3.8"
 services:
 
   web:
-    depends_on: 
-      - api
     build: ./encurtador-web  
     volumes:
       - ./encurtador-web:/app
@@ -20,19 +18,16 @@ services:
     build:
       context: ./encurtador-api
       dockerfile: Dockerfile
-    environment:
-      - MYSQL_HOST=db
-      - MYSQL_PORT=3306
-      - MYSQL_DATABASE=encurtador
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
     volumes:
-      - ./encurtador-api:/app
+      - ./encurtador-api/:/var/www
+
+  nginx:
+    image: nginx:alpine
     ports:
-      - 8000:8000
-    depends_on:
-      - db
-      - cron
+      - "8989:80"
+    volumes:
+      - ./encurtador-api:/var/www
+      - ./docker/nginx/laravel.conf:/etc/nginx/conf.d/default.conf
 
   cron:
     build:

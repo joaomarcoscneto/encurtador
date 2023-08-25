@@ -15,10 +15,10 @@ export default {
   methods: {
     async redirectToLink(slug) {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/links/${slug}/by-slug`);
+        const response = await axios.get(`http://127.0.0.1:8989/api/links/${slug}/by-slug`);
         const link = response.data;
 
-        await axios.post(`http://127.0.0.1:8000/api/links/${link.id}/access`);
+        await axios.post(`http://127.0.0.1:8989/api/links/${link.id}/access`);
         window.location.href = link.url;
       } catch (error) {
         console.error('Error redirecting to link:', error);

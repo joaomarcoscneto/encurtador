@@ -60,7 +60,7 @@ export default {
     async submitLink() {
       this.addError = ''; // Clear previous error message
       try {
-        const response = await axios.post('http://127.0.0.1:8000/api/links', this.newLink);
+        const response = await axios.post('http://127.0.0.1:8989/api/links', this.newLink);
         this.closeAddLinkDialog(); // Close the dialog after successful addition
         window.location.href = '/?search=' + encodeURIComponent(response.data.slug);
       } catch (error) {

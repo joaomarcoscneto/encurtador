@@ -126,7 +126,7 @@ export default {
   methods: {
     async fetchDataFromAPI() {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/api/links');
+        const response = await axios.get('http://127.0.0.1:8989/api/links');
         this.itemList = response.data;
       } catch (error) {
         console.error('Error fetching data from API:', error);
@@ -153,7 +153,7 @@ export default {
     },
     async saveLink() {
       try {
-        const response = await axios.put(`http://127.0.0.1:8000/api/links/${this.formData.id}`, this.formData);
+        const response = await axios.put(`http://127.0.0.1:8989/api/links/${this.formData.id}`, this.formData);
         this.editDialog = false;
         this.fetchDataFromAPI();
         this.clearFormData();
@@ -170,7 +170,7 @@ export default {
     },
     async deleteItem(id, index) {
       try {
-        await axios.delete(`http://127.0.0.1:8000/api/links/${id}`);
+        await axios.delete(`http://127.0.0.1:8989/api/links/${id}`);
         this.itemList.splice(index, 1);
         location.reload();
       } catch (error) {

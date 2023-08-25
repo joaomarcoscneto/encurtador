@@ -1,39 +1,31 @@
 FROM php:8.1-fpm
 
-# Set the working directory in the container
-WORKDIR /app
+# Set your user name and UID
+ARG user=joao
+ARG uid=1000
 
-# Install PHP extensions and dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
     libonig-dev \
     libxml2-dev \
-    libzip-dev \
     zip \
-    unzip \
-    git \
-    && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath opcache \
-    && pecl install -o -f redis \
-    && rm -rf /tmp/pear \
-    && docker-php-ext-enable redis \
-    && apt-get install -y libxml2-dev \
-    && docker-php-ext-install xml \
-    && apt-get install -y libcurl4-openssl-dev \
-    && docker-php-ext-install curl
+    unzip
 
-# Install Composer
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath
+
+# Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy composer files to the container
-COPY composer.json ./
+# Create system user to run Composer and Artisan Commands
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
 
-# Install project dependencies
-RUN composer install --prefer-dist --no-scripts --no-autoloader --no-dev
+# Set working directory
+WORKDIR /var/www
 
-# Copy the rest of the project files to the container
-COPY . .
-
-# Generate the autoload files
-RUN composer dump-autoload --no-scripts --no-dev --optimize
-
-# Set the command to run the Laravel app
-CMD php artisan serve --host=0.0.0.0 --port=8000
+USER $user
