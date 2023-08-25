@@ -1,8 +1,54 @@
-# encurtador
+## Passo a passo para rodar o projeto
+Clone o projeto
+```sh
+git clone git@github.com:joaomarcoscneto/encurtador.git
+```
+```sh
+cd encurtador/encurtador-api
+```
 
-Olá!
 
-Instruções para rodar o projeto:
+Crie o Arquivo .env
+```sh
+cp .env.example .env
+```
 
-1. Clonar o projeto com Git
-2. Na pasta na qual foi clonado rodar o comando docker compose up --build
+Volte para a raiz do projeto
+```sh
+cd ..
+```
+
+
+Suba os containers do projeto
+```sh
+cd ..
+docker-compose up --build
+```
+
+
+Acesse o container
+```sh
+docker-compose exec api bash
+```
+
+
+Instale as dependências do projeto
+```sh
+composer install
+```
+
+
+Gere a key do projeto Laravel
+```sh
+php artisan key:generate
+```
+
+Rode as migrations
+```sh
+php artisan migrate
+```
+
+
+
+Acesse o projeto
+http://localhost:5173/
