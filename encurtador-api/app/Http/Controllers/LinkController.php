@@ -10,6 +10,7 @@ use App\Services\Links\DestroyLinkService;
 use App\Services\Links\ListLinkService;
 use App\Services\Links\StoreLinkService;
 use App\Services\Links\UpdateLinkService;
+use App\Services\Links\ShowBySlugLinkService;
 
 class LinkController extends Controller
 {
@@ -60,5 +61,11 @@ class LinkController extends Controller
     {
         $destroyLinkService->run($link);
         return response()->json([], 204);
+    }
+
+    public function showBySlug(string $slug, ShowBySlugLinkService $showBySlugLinkService)
+    {
+        $link = $showBySlugLinkService->run($slug);
+        return response()->json($link);
     }
 }

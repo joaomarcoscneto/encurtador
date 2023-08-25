@@ -17,4 +17,5 @@ use App\Http\Controllers\LinkAccessController;
 */
 
 Route::apiResource('links', LinkController::class);
+Route::get('links/{slug}/by-slug', [LinkController::class, 'showBySlug']);
 Route::post('links/{link}/access', [LinkAccessController::class, 'store']);
