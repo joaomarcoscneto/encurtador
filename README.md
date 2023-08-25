@@ -3,6 +3,7 @@ Clone o projeto
 ```sh
 git clone git@github.com:joaomarcoscneto/encurtador.git
 ```
+Entre no encurtador-api
 ```sh
 cd encurtador/encurtador-api
 ```
