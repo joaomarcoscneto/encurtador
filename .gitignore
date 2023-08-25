@@ -3,7 +3,6 @@
 
 # Arquivos gerados pelo Composer
 /vendor
-composer.lock
 
 # Arquivos gerados pelo NPM ou Yarn
 /node_modules
