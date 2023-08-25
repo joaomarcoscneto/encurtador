@@ -3,11 +3,11 @@ Clone o projeto
 ```sh
 git clone git@github.com:joaomarcoscneto/encurtador.git
 ```
+
 Entre no encurtador-api
 ```sh
 cd encurtador/encurtador-api
 ```
-
 
 Crie o Arquivo .env
 ```sh
@@ -22,7 +22,6 @@ cd ..
 
 Suba os containers do projeto
 ```sh
-cd ..
 docker-compose up --build
 ```
 
